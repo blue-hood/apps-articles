@@ -3,14 +3,15 @@
   <img src="/storage/articles/images/1814cc87.jpg" srcset="/storage/articles/images/21c8af6c.jpg 2x">
 </picture>
 
-皆さんは画像をSNSや自身のブログなどに投稿する際に加工したことはないでしょうか？
-Twitterでは画像が自動的に16:9で表示されるため、予め16:9でトリミングしておくことでどのように表示されるかを調整できます。
-トリミング機能はAndroid版にはありますがWeb版にはないため、PCからの画像投稿のときに少し面倒に感じたりします。
+皆さんは画像を SNS や自身のブログなどに投稿する際に加工したことはないでしょうか？
+Twitter では画像が自動的に 16:9 で表示されるため、あらかじめ 16:9 でトリミングしておくことでどのように表示されるかを調整できます。
+トリミング機能は Android 版にはありますが Web 版にはないため、PC からの画像投稿のときに少し面倒に感じたりします。
 
 <ol class="table-of-contents"></ol>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- ディスプレイ広告 -->
+<!-- textlint-disable -->
 
 <ins class="adsbygoogle"
     style="display:block"
@@ -19,26 +20,28 @@ Twitterでは画像が自動的に16:9で表示されるため、予め16:9で�
     data-ad-format="auto"
     data-full-width-responsive="true"></ins>
 
+<!-- textlint-enable -->
+
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-## 画像編集の自動化といえばImageMagick
+## 画像編集の自動化といえば ImageMagick
 
-そこでGIMPなどの画像編集ソフトが必要になりますが、私はImageMagickを利用しています。
-画像の加工を自動で行うためのコマンドラインが用意されており、例えば以下のようにすればpngファイルを一括で余白トリミングできます。
-GIMPでいう「最小枠で切り抜き」機能ですね。
+そこで GIMP などの画像編集ソフトが必要になりますが、私は ImageMagick を利用しています。
+画像の加工を自動で行うためのコマンドラインが用意されており、たとえば以下のようにすれば png ファイルを一括で余白トリミングできます。
+GIMP でいう「最小枠で切り抜き」機能ですね。
 
 <pre class="prettyprint">
 $ mogrify -trim *.png
 </pre>
 
-画像サイズを指定しての切り抜きはImageMagickの `crop` オプションを使います。
-座標 (`X`, `Y`) の位置で幅 `W` px、高さ `H` pxのトリミングをするには以下のコマンドを打ちます。
+画像サイズを指定しての切り抜きは ImageMagick の `crop` オプションを使います。
+座標 (`X`, `Y`) の位置で幅 `W` px、高さ `H` px のトリミングをするには以下のコマンドを打ちます。
 
 <pre class="prettyprint">
 $ convert (元ファイル) -crop WxH+X+Y (出力パス)
 </pre>
 
-しかし、残念ながら比率（16:9など）の指定によるトリミングには対応していません。
+しかし、残念ながら比率（16:9 など）の指定によるトリミングには対応していません。
 そこで、比率指定によるトリミングのコマンドをシェルスクリプトで作りました。
 
 ## `trimrate` コマンドを作ってみた
@@ -48,7 +51,7 @@ $ convert (元ファイル) -crop WxH+X+Y (出力パス)
 <script src="https://gist.github.com/Hato6502/dc46fd6108301ed9106da67db6768ec9.js"></script>
 
 このシェルスクリプトを `trimrate` というファイル名で保存します。
-保存先は `/usr/local/bin` などのパスが通ってるところが便利です。
+保存先は `/usr/local/bin` などのパスが通っているところが便利です。
 そして `chmod +x trimrate` で実行権限を与えて以下の構文でトリミングを行います。
 
 <pre class="prettyprint">
@@ -56,7 +59,7 @@ $ trimrate (元ファイル) (幅比率) (高さ比率) (X オフセット) (Y �
 $ trimrate src.jpg 16 9 0 0 dest.jpg -gravity center (←こんな感じ)
 </pre>
 
-コマンドの動作的には、比率から切り抜きの幅高さを計算してImageMagickの `crop` 機能を呼び出しているだけです。
+コマンドの動作的には、比率から切り抜きの幅高さを計算して ImageMagick の `crop` 機能を呼び出しているだけです。
 デフォルトだと画像の上部でトリミングするため、`-gravity center` オプションを加えて中央でトリミングしています。
 
 ## `for` 文で一括処理する
@@ -69,7 +72,7 @@ $ mkdir 16-9
 $ for file in `ls *.jpg`; do trimrate ${file} 16 9 0 0 16-9/${file} -gravity center; done
 </pre>
 
-やってることは、`16-9` という名前でディレクトリを作り、`ls *.jpg` と `for` 文でjpgファイルのループ処理をしています。
+`16-9` という名前でディレクトリを作り、`ls *.jpg` と `for` 文で jpg ファイルのループ処理をしています。
 `identify` コマンドでトリミング前後の画像ファイルを確認すると、
 
 <pre class="prettyprint">
@@ -89,7 +92,7 @@ $ identify 16-9/*.jpg  (トリミング後)
 16-9/publicdomainq-0033354fvanhv.jpg JPEG 4752x2673 4752x2673+0+0 8-bit sRGB 5.354MB 0.010u 0:00.000
 </pre>
 
-このとおり16:9になっています。
+このとおり 16:9 になっています。
 `display` コマンドで中身を確認すると、ちゃんと中央でのトリミングになっていました。
 
 トリミング前
