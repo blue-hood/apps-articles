@@ -1,0 +1,12 @@
+{
+  "*.{md}": [
+    "prettier --write",
+    "textlint --fix",
+    "textlint",
+    "git add"
+  ],
+  "*.{xml}": [
+    "prettier --write --parser html",
+    "git add"
+  ]
+}

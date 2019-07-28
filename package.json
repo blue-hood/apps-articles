@@ -1,0 +1,22 @@
+{
+  "name": "apps-articles",
+  "version": "1.0.0",
+  "description": "Hood の記事です。",
+  "main": "index.js",
+  "scripts": {
+    "test": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com//blue-hood/apps-articles"
+  },
+  "author": "hato6502",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "husky": "^3.0.1",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
+    "textlint": "^11.3.1",
+    "textlint-rule-preset-jtf-style": "^2.3.3"
+  }
+}
