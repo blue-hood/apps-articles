@@ -1,7 +1,6 @@
 {
   "*.{md}": [
     "prettier --write",
-    "textlint --fix",
     "textlint",
     "git add"
   ],
