@@ -1,3 +1,9 @@
+---
+title: ImageMagickで16:9トリミングを自動化
+description: 画像編集のなかでも頻度が高いと思われる「16:9トリミング」を自動化し、作業効率アップを図る方法を紹介します。
+thumbnail: /storage/articles/images/1814cc87.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/1814cc87.webp 1x, /storage/articles/images/21c8af6c.webp 2x">
   <img src="/storage/articles/images/1814cc87.jpg" srcset="/storage/articles/images/21c8af6c.jpg 2x">

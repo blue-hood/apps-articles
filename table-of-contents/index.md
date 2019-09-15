@@ -1,3 +1,9 @@
+---
+title: 【jQuery不要】JS で章番号 & リンク付きの目次を自動生成する
+description: 内容をひと目で確認できる目次を、JavaScript で自動生成してデザインを整える方法を紹介します。
+thumbnail: /storage/articles/images/5b213ef0.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/5b213ef0.webp 1x,/storage/articles/images/62fd5d1b.webp 2x">
   <img src="/storage/articles/images/5b213ef0.jpg" srcset="/storage/articles/images/62fd5d1b.jpg 2x">

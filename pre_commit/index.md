@@ -1,3 +1,9 @@
+---
+title: 【CI】git commit 時に自動整形 & コーディングチェックする
+description: 継続的インテグレーションをサーバーレスで実現する方法を紹介します。
+thumbnail: /storage/articles/images/2fa79dbd.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/2fa79dbd.webp 1x,/storage/articles/images/167bfe56.webp 2x">
   <img src="/storage/articles/images/2fa79dbd.jpg" srcset="/storage/articles/images/167bfe56.jpg 2x">

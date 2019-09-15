@@ -1,3 +1,9 @@
+---
+title: マイコンを使わないアナログ式電子オルゴールを作った
+description: デジタル全盛のいま、あえてマイコンを使わずアナログな電子オルゴールを作りました。
+thumbnail: /storage/articles/images/e7c0bb07.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/e7c0bb07.webp">
   <img src="/storage/articles/images/e7c0bb07.jpg">

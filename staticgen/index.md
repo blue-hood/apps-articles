@@ -1,3 +1,9 @@
+---
+title: 「静的サイトジェネレータ」という言葉だけで静的サイトを作った話
+description: Laravel & wget & nginx を使って簡易的な静的サイトを作ってみました。
+thumbnail: /storage/articles/images/2dfe71f9.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/2dfe71f9.webp 1x,/storage/articles/images/2dfe71f8.webp 2x">
   <img src="/storage/articles/images/2dfe71f9.jpg" srcset="/storage/articles/images/2dfe71f8.jpg 2x">

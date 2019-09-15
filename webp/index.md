@@ -1,3 +1,9 @@
+---
+title: webp 画像形式でファイルサイズが 92% 削減された
+description: webp 画像形式をサイトに導入し、画像の転送負荷を大幅に削減する方法を紹介します。
+thumbnail: /storage/articles/images/e18bc26b.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/e18bc26b.webp 1x, /storage/articles/images/d857a180.webp 2x">
   <img srcset="/storage/articles/images/e18bc26b.jpg 1x, /storage/articles/images/d857a180.jpg 2x">

@@ -1,3 +1,9 @@
+---
+title: 大規模な作業のときは「付箋スタック」を積む
+description: 仕事上での作業漏れをなくす「付箋スタック」を提案します。
+thumbnail: /storage/articles/images/770a5abf.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/770a5abf.webp 1x,/storage/articles/images/4ed63954.webp 2x">
   <img src="/storage/articles/images/770a5abf.jpg" srcset="/storage/articles/images/4ed63954.jpg 2x">

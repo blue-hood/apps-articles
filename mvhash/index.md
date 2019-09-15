@@ -1,3 +1,9 @@
+---
+title: 面倒なファイル名は付けずに8文字IDで管理しよう
+description: 特にファイル名をつける必要がないときは、自動で8文字IDに置き換えて管理しやすくする方法を紹介します。
+thumbnail: /storage/articles/images/7c38fe6d.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/7c38fe6d.webp 1x,/storage/articles/images/45e49d86.webp 2x">
   <img src="/storage/articles/images/7c38fe6d.jpg" srcset="/storage/articles/images/45e49d86.jpg 2x">

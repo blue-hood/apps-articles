@@ -1,3 +1,9 @@
+---
+title: リーダブルコードが強迫観念になりつつあること
+description: 本来メンテナンス性を保つために必要なリーダブルコードが、かえって負担になっている現状について。
+thumbnail: /storage/articles/images/75c62197.jpg
+---
+
 <picture>
   <source type="image/webp" src="/storage/articles/images/75c62197.webp">
   <img src="/storage/articles/images/75c62197.jpg">

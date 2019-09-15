@@ -1,3 +1,9 @@
+---
+title: 【Git×Twitter】連携 &amp; 通知してコミットの質を上げよう
+description: Git と Twitter の連携をサーバレスで導入する方法を紹介します。
+thumbnail: /storage/articles/images/dc698745.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/dc698745.webp 1x, /storage/articles/images/e5b5e4ae.webp 2x">
   <img src="/storage/articles/images/dc698745.jpg" srcset="/storage/articles/images/e5b5e4ae.jpg 2x">

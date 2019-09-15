@@ -1,3 +1,9 @@
+---
+title: シェルで lastmod changefreq 付きの sitemap.xml を作る
+description: Web サイトのクロールに大きな役割を持つ sitemap.xml を、シェルスクリプトで自動生成する方法を紹介します。
+thumbnail: /storage/articles/images/a92fe036.jpg
+---
+
 <picture>
   <source type="image/webp" srcset="/storage/articles/images/a92fe036.webp 1x,/storage/articles/images/90f383dd.webp 2x">
   <img src="/storage/articles/images/a92fe036.jpg" srcset="/storage/articles/images/90f383dd.jpg 2x">
