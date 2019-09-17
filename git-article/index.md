@@ -169,7 +169,8 @@ class Article
 
 PHP にて Markdown の構文解析をし、HTML として出力するために [cebe/markdown](https://github.com/cebe/markdown) を利用しました。
 また、YAML 形式の FrontMatter を解析するために [hyn/frontmatter](https://github.com/hyn/frontmatter) を併用します。
-下記のプログラムによって、`$article['meta']` にメタデータ、`$article['html']` へ本文の HTML が格納されます。
+下記のプログラムによって、`$article['meta']` にメタデータが格納されます。
+`$article['html']` には本文の HTML が格納されます。
 
 <pre class="prettyprint lang-php linenums">
 $parser = new Parser(new Markdown());
