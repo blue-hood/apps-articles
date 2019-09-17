@@ -1,12 +1,12 @@
 ---
 title: 記事を Git で管理することにした
 description: 記事原稿を Git で管理するメリットや方法をまとめました。
-thumbnail: /storage/articles/images/e7c0bb07.jpg
+thumbnail: /storage/articles/images/ab5a24b3.png
 ---
 
 <picture>
-  <source type="image/webp" srcset="/storage/articles/images/e7c0bb07.webp">
-  <img src="/storage/articles/images/e7c0bb07.jpg">
+  <source type="image/webp" srcset="/storage/articles/images/ab5a24b3.webp">
+  <img src="/storage/articles/images/ab5a24b3.png">
 </picture>
 
 このサイトでは記事をデータベースに保存していたのですが、Git での管理に移行しました。
@@ -56,7 +56,7 @@ WordPress などの CMS には、下書き保存や承認フロー機能など�
 
 が挙げられます。
 視覚的に Git を操作できるツールを導入したりして、Git 独特の操作の難しさを解消する必要がありそうですね。
-また、記事データを [RAM ディスク](https://blog.katsubemakito.net/linux/ramdisk-tmpfs)に配置したり、[Redis](https://redis.io/) にキャッシュさせたりとひと工夫必要そうです。
+読み込み負荷の問題については後述します。
 
 ## FrontMatter でメタデータを管理する
 
@@ -80,7 +80,7 @@ thumbnail: /storage/articles/images/e7c0bb07.jpg
 まず、記事を管理する Git リポジトリを作成します。
 記事データの配置は次のディレクトリ構成にします。
 
-```
+<pre class="prettyprint">
 .
 ├── README.md など
 ├── (記事 ID)
@@ -88,17 +88,17 @@ thumbnail: /storage/articles/images/e7c0bb07.jpg
 ├── (記事 ID)
 │   └── index.md
 …
-```
+</pre>
 
 たとえば記事 ID `staticgen`、`trimrate` の記事を配置するには
 
-```
+<pre class="prettyprint">
 .
 ├── staticgen
 │   └── index.md
 └── trimrate
      └── index.md
-```
+</pre>
 
 とします。
 そして、Laravel のプロジェクトルートに記事の Git リポジトリをサブモジュールとして配置します。
@@ -110,8 +110,8 @@ $ git submodule add (記事リポジトリのアドレスやパス)
 
 記事データを管理するクラスを `app/Article.php` として作成します。
 
-<pre class="prettyprint lang-php">
-<?php
+<pre class="prettyprint lang-php linenums">
+&lt;?php
 
 namespace App;
 
@@ -124,25 +124,25 @@ class Article
 {
     public static function get(string $id): array
     {
-        $articlesPath = base_path('apps-articles');
-        $articlePath = "${articlesPath}/${id}/index.md";
+        $articlesPath = base_path(&#39;apps-articles&#39;);
+        $articlePath = &quot;${articlesPath}/${id}/index.md&quot;;
         $file = file_get_contents($articlePath);
 
         $parser = new Parser(new Markdown());
-        $parser->setFrontmatter(YamlFrontmatter::class);
+        $parser-&gt;setFrontmatter(YamlFrontmatter::class);
 
-        $article = $parser->parse($file);
-        $article['meta']['id'] = $id;
-        $article['meta']['updated_at'] = (new Carbon(filemtime($articlePath)))->format('Y-m-d');
-        $article['meta']['hash'] = hash('crc32b', $file);
+        $article = $parser-&gt;parse($file);
+        $article[&#39;meta&#39;][&#39;id&#39;] = $id;
+        $article[&#39;meta&#39;][&#39;updated_at&#39;] = (new Carbon(filemtime($articlePath)))-&gt;format(&#39;Y-m-d&#39;);
+        $article[&#39;meta&#39;][&#39;hash&#39;] = hash(&#39;crc32b&#39;, $file);
 
         return $article;
     }
 
     public static function getMetas(): array
     {
-        $articlesPath = base_path('apps-articles');
-        $articlePaths = glob("${articlesPath}/*/index.md");
+        $articlesPath = base_path(&#39;apps-articles&#39;);
+        $articlePaths = glob(&quot;${articlesPath}/*/index.md&quot;);
         usort($articlePaths, function ($a, $b) {
             return filemtime($b) - filemtime($a);
         });
@@ -150,12 +150,12 @@ class Article
         $articles = [];
         foreach ($articlePaths as $articlePath) {
             $parser = new Parser(new Markdown());
-            $parser->setFrontmatter(YamlFrontmatter::class);
+            $parser-&gt;setFrontmatter(YamlFrontmatter::class);
 
-            $article = $parser->parse(file_get_contents($articlePath));
-            $meta = $article['meta'];
-            $meta['id'] = str_replace('/index.md', '', str_replace($articlesPath . '/', "", $articlePath));
-            $meta['updated_at'] = (new Carbon(filemtime($articlePath)))->format('Y-m-d');
+            $article = $parser-&gt;parse(file_get_contents($articlePath));
+            $meta = $article[&#39;meta&#39;];
+            $meta[&#39;id&#39;] = str_replace(&#39;/index.md&#39;, &#39;&#39;, str_replace($articlesPath . &#39;/&#39;, &quot;&quot;, $articlePath));
+            $meta[&#39;updated_at&#39;] = (new Carbon(filemtime($articlePath)))-&gt;format(&#39;Y-m-d&#39;);
 
             $articles[] = $meta;
         }
@@ -165,18 +165,40 @@ class Article
 }
 </pre>
 
-このプログラムの説明をしたいと思います。
-
 ### Markdown の解析
+
+PHP にて Markdown の構文解析をし、HTML として出力するために [cebe/markdown](https://github.com/cebe/markdown) を利用しました。
+また、YAML 形式の FrontMatter を解析するために [hyn/frontmatter](https://github.com/hyn/frontmatter) を併用します。
+下記のプログラムによって、`$article['meta']` にメタデータが格納されます。
+`$article['html']` には本文の HTML が格納されます。
+
+<pre class="prettyprint lang-php linenums">
+$parser = new Parser(new Markdown());
+$parser->setFrontmatter(YamlFrontmatter::class); 
+$article = $parser->parse(file_get_contents($articlePath));
+</pre>
 
 ### 記事一覧の取得
 
-### 記事本文の取得
+`getMetas()`では記事一覧を更新日順に取得しています。
+`glob()` を使って、記事ファイルをワイルドカードで一括取得します。
+得られたファイルパスの配列に対し、`filemtime()` で更新時刻の UNIX 時間を取得し、更新が新しい順にソートします。
+あとは、各記事ファイルごとに Markdown を解析してメタデータを取得するだけです。
+
+<pre class="prettyprint lang-php linenums">
+$articlesPath = base_path('apps-articles');
+$articlePaths = glob("${articlesPath}/*/index.md");
+usort($articlePaths, function ($a, $b) {
+    return filemtime($b) - filemtime($a);
+});
+</pre>
 
 ## 記事をキャッシュする
 
 このプログラムは、サイトへのアクセスごとに記事ファイルを読み込んでいるため、サイトの速度などに影響がありそうです。
-しかし、このサイトは[静的サイト](/articles/staticgen/)のため問題ありません。
+しかし、[静的サイト](/articles/staticgen/)の場合は問題ありません。（このサイトは静的です）
 動的サイトの場合は、記事データをキャッシュしたりする必要があります。
-記事を管理する Git リポジトリに CI を構築して、Redis やデータベースに自動デプロイするとよいかもしれません。
+
+記事リポジトリに CI を構築して、[Redis](https://redis.io/) やデータベースに自動デプロイするとよいかもしれません。
+このプログラムを流用して、記事リポジトリを [RAM ディスク](https://blog.katsubemakito.net/linux/ramdisk-tmpfs)に配置するなど対処法は割とあります。
 または、先日耳にした [microCMS](https://microcms.io/) のように、記事データをクライアントサイドでダウンロードして表示するのもモダンなやり方だと思います。
