@@ -1,7 +1,6 @@
 ---
 title: ふせんプログラミング
 description: コンピュータを使わず 0 からプログラミングをするために。
-thumbnail: /storage/articles/images/75c62197.jpg
 ---
 
 物の整理をしていたらおもしろい資料が出てきたので公開します。
