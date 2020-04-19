@@ -38,7 +38,7 @@ JavaScript で目次を自動生成する方法を紹介します。
 
 目次を置く場所に `<ol class="table-of-contents"></ol>` を配置して、この要素の中に JavaScript で目次の情報を書き込んでいきます。
 
-<script src="https://gist.github.com/Hato6502/e10e01e891fa9abd56eda3d6beedeef0.js"></script>
+<script src="https://gist.github.com/Hata6502/e10e01e891fa9abd56eda3d6beedeef0.js"></script>
 
 上記が目次を自動生成する JavaScript の完成形になります。
 

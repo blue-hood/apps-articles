@@ -77,7 +77,7 @@ $ gitwitter
 
 ### `tweet` コマンド
 
-[GitHub: Hato6502/tweet](https://github.com/hato6502/tweet)
+[GitHub: Hata6502/tweet](https://github.com/hata6502/tweet)
 
 コマンドラインからツイートします。標準入力から読み込む汎用的な作りにしたので、Git との連携以外にも応用できるかもしれません。
 
@@ -89,7 +89,7 @@ $ echo "tweet コマンドのテストです。" | tweet
 
 <pre class="prettyprint">
 # cd /usr/local/src
-# git clone https://github.com/Hato6502/tweet
+# git clone https://github.com/Hata6502/tweet
 </pre>
 
 (2) Composer で依存パッケージをインストールします。
@@ -115,11 +115,11 @@ $ echo "tweet コマンドのテストです。" | tweet
 
 ### `gitwitter` コマンド
 
-[Gist: Hato6502/gitwitter](https://gist.github.com/Hato6502/d3bb634ec9beb9443a040c90733284bd)
+[Gist: Hata6502/gitwitter](https://gist.github.com/Hata6502/d3bb634ec9beb9443a040c90733284bd)
 
 Git のコミットメッセージを収集してツイートし、`git push` します。直接 /usr/local/bin などに配置すればインストール完了です。push 先の URL などによって正常動作しない場合や、ツイート内容の調整をする場合は編集してください。引数を指定すると、そのまま `git push` の引数になります。
 
-<script src="https://gist.github.com/Hato6502/d3bb634ec9beb9443a040c90733284bd.js"></script>
+<script src="https://gist.github.com/Hata6502/d3bb634ec9beb9443a040c90733284bd.js"></script>
 
 ## `git` コマンドを使いこなすための参考資料集
 

@@ -54,7 +54,7 @@ $ convert (元ファイル) -crop WxH+X+Y (出力パス)
 
 結論から言うと、比率指定によるトリミングコマンドを以下のように作りました。
 
-<script src="https://gist.github.com/Hato6502/dc46fd6108301ed9106da67db6768ec9.js"></script>
+<script src="https://gist.github.com/Hata6502/dc46fd6108301ed9106da67db6768ec9.js"></script>
 
 このシェルスクリプトを `trimrate` というファイル名で保存します。
 保存先は `/usr/local/bin` などのパスが通っているところが便利です。

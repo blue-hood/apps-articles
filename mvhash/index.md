@@ -45,7 +45,7 @@ Web サイトやプレゼンテーション資料を作るときなど、画像�
 
 Linux や Mac をお使いであれば、以下のシェルスクリプトを導入することで 8 文字 ID へ変換できます。
 
-<script src="https://gist.github.com/Hato6502/9ebb9a6ce2863e9498a5ebea3a3f5c6c.js"></script>
+<script src="https://gist.github.com/Hata6502/9ebb9a6ce2863e9498a5ebea3a3f5c6c.js"></script>
 
 上記シェルスクリプトを `mvhash` というファイル名で /usr/localbin などのパスが通っているところに配置します。
 そして、以下のようにすれば 8 文字 ID に変換されます。
